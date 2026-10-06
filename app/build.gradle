@@ -7,16 +7,26 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file("../../keys/new.jks")
-            storePassword "123123"
-            keyAlias "key0"
-            keyPassword "123123"
+            def kFile = file("../../keys/new.jks")
+            if (!kFile.exists()) kFile = file("../keys/new.jks")
+            if (!kFile.exists()) kFile = file("new.jks")
+            if (kFile.exists()) {
+                storeFile kFile
+                storePassword "123123"
+                keyAlias "key0"
+                keyPassword "123123"
+            }
         }
         release {
-            storeFile file("../../keys/new.jks")
-            storePassword "123123"
-            keyAlias "key0"
-            keyPassword "123123"
+            def kFile = file("../../keys/new.jks")
+            if (!kFile.exists()) kFile = file("../keys/new.jks")
+            if (!kFile.exists()) kFile = file("new.jks")
+            if (kFile.exists()) {
+                storeFile kFile
+                storePassword "123123"
+                keyAlias "key0"
+                keyPassword "123123"
+            }
         }
     }
     compileSdk 34
